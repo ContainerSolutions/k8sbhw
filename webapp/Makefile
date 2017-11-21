@@ -4,7 +4,7 @@ IMG    := ${NAME}:${TAG}
 LATEST := ${NAME}:latest
 
 SOURCES=$(shell find . -name '*.go')
-.PHONY=image push
+.PHONY=image push test
 
 webapp: $(SOURCES) 
 	go test -v ./...
@@ -16,3 +16,6 @@ image: webapp
 
 push: webapp image
 	docker push ${NAME}
+
+test:
+	go test -v ./...
