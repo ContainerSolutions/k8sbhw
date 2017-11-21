@@ -17,6 +17,11 @@ type SliceDataStore struct {
 	slice []Record
 }
 
+//NewSliceDataStore initializes a new slice based data store
+func NewSliceDataStore() *SliceDataStore {
+	return &SliceDataStore{make([]Record, 0)}
+}
+
 //Get all the elements in the SliceDataStore d
 func (d *SliceDataStore) Get() []Record {
 	return d.slice
