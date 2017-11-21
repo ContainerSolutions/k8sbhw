@@ -12,7 +12,7 @@ import (
 func TestStoreHandler(t *testing.T) {
 
 	t.Run("Test GET", func(*testing.T) {
-		dataStore := datastore.SliceDataStore{}
+		dataStore := datastore.NewSliceDataStore()
 		dataStore.Add(datastore.Record{"a", "b"})
 		dataStore.Add(datastore.Record{"c", "1"})
 
@@ -21,7 +21,7 @@ func TestStoreHandler(t *testing.T) {
 			t.Fatal(err)
 		}
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(getStoreHandler(&dataStore))
+		handler := http.HandlerFunc(getStoreHandler(dataStore))
 
 		handler.ServeHTTP(rr, req)
 
@@ -38,7 +38,7 @@ func TestStoreHandler(t *testing.T) {
 	})
 
 	t.Run("Test PUT", func(*testing.T) {
-		dataStore := datastore.SliceDataStore{}
+		dataStore := datastore.NewSliceDataStore()
 
 		record := `{"Key": "bla", "Value": "lots"}`
 		req, err := http.NewRequest("PUT", "/store", strings.NewReader(record))
@@ -46,7 +46,7 @@ func TestStoreHandler(t *testing.T) {
 			t.Fatal(err)
 		}
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(getStoreHandler(&dataStore))
+		handler := http.HandlerFunc(getStoreHandler(dataStore))
 
 		handler.ServeHTTP(rr, req)
 
