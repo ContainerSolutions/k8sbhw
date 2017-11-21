@@ -37,6 +37,20 @@ func getStoreHandler(dataStore datastore.Datastore) func(http.ResponseWriter, *h
 				fmt.Fprintln(w, "OK")
 			}
 
+		case "DELETE":
+			record := datastore.Record{}
+			err := json.NewDecoder(r.Body).Decode(&record)
+			if err != nil {
+				status = http.StatusBadRequest
+				w.WriteHeader(status)
+				fmt.Fprintln(w, err)
+			} else {
+				dataStore.Rem(record)
+				status = http.StatusOK
+				w.WriteHeader(status)
+				fmt.Fprintln(w, "OK")
+			}
+
 		default:
 			status = http.StatusMethodNotAllowed
 			w.WriteHeader(status)

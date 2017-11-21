@@ -10,6 +10,7 @@ type Record struct {
 type Datastore interface {
 	Get() []Record
 	Add(Record)
+	Rem(Record)
 }
 
 //SliceDataStore is a Datastore that uses a slice as data store
@@ -37,4 +38,19 @@ func (d *SliceDataStore) Add(record Record) {
 	}
 
 	d.slice = append(d.slice, record)
+}
+
+//Rem ove an element from the SliceDataStore d
+func (d *SliceDataStore) Rem(record Record) {
+	for i, r := range d.slice {
+		if r.Key == record.Key {
+			d.slice[i] = d.slice[len(d.slice)-1]
+			d.slice = d.slice[:len(d.slice)-1]
+		}
+	}
+}
+
+//Size of the SliceDatastore d
+func (d *SliceDataStore) Size() int {
+	return len(d.slice)
 }
