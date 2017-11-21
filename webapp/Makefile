@@ -10,9 +10,9 @@ webapp: $(SOURCES)
 	go test -v ./...
 	CGO_ENABLED=0 GOOS=linux go build -o $@ -a -ldflags '-extldflags "-static"' .
 
-image:
+image: webapp
 	docker build -t ${IMG} .
 	docker tag ${IMG} ${LATEST}
 
-push:
+push: webapp image
 	docker push ${NAME}
