@@ -1,5 +1,5 @@
 NAME   := riccardomc/k8sbhw-webapp
-TAG    := $(shell git log -1 --pretty=%\!H\(MISSING\))
+TAG    := $(shell git log -1 --pretty=%h)
 IMG    := ${NAME}:${TAG}
 LATEST := ${NAME}:latest
 
