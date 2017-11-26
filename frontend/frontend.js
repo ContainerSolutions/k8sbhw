@@ -29,10 +29,18 @@ Vue.component('Record', {
 
   methods: {
     deleteRecord: function(record) {
-      axios.delete(url, {data: {Key: record.Key}});
+      return axios.delete(url, {data: {Key: record.Key}})
+        .then((response) => {
+          vm.getRecords()
+        }
+      );
     },
     updateRecord: function(record) {
-      axios.put(url, {Key: record.Key, Value: record.Value});
+      return axios.put(url, {Key: record.Key, Value: record.Value})
+        .then((response) => {
+          vm.getRecords()
+        }
+      );
     }
   }
 });
@@ -45,8 +53,11 @@ const vm = new Vue({
 
   methods: {
     getRecords: function() {
-      axios.get(url).then(response => {this.records = response.data});
-    }
+      return axios.get(url)
+        .then((response) => {
+          this.records = response.data
+      });
+    },
   },
 
   mounted: function() {
