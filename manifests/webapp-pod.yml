@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+spec:
+  containers:
+    - name: webapp
+      image: riccardomc/k8sbhw-webapp:latest
+      ports:
+        - containerPort: 9009
