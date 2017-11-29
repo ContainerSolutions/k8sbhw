@@ -8,6 +8,7 @@ type Record struct {
 
 //Datastore is a datastore, man
 type Datastore interface {
+	Init(interface{}) error
 	Get() []Record
 	Add(Record)
 	Rem(Record)
@@ -20,7 +21,13 @@ type SliceDataStore struct {
 
 //NewSliceDataStore initializes a new slice based data store
 func NewSliceDataStore() *SliceDataStore {
-	return &SliceDataStore{make([]Record, 0)}
+	return &SliceDataStore{}
+}
+
+//Init initializes the SliceDataStore with initial capacity initialCapacity
+func (d *SliceDataStore) Init(initialCapacity interface{}) error {
+	d.slice = make([]Record, initialCapacity.(int))
+	return nil
 }
 
 //Get all the elements in the SliceDataStore d

@@ -69,6 +69,7 @@ func log(message string) {
 func main() {
 	listen := ":9009"
 	dataStore := datastore.NewSliceDataStore()
+	dataStore.Init(0)
 	http.HandleFunc("/store", getStoreHandler(dataStore))
 	log(fmt.Sprintf("Listening on %s", listen))
 	http.ListenAndServe(listen, nil)

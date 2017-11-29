@@ -4,6 +4,7 @@ import "testing"
 
 func TestSliceDatastore(t *testing.T) {
 	dataStore := SliceDataStore{}
+	dataStore.Init(0)
 
 	t.Run("Add a record", func(*testing.T) {
 		record := Record{"a", "b"}
