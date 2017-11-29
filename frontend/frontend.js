@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/webapp/store';
+const url = 'http://192.168.99.100:32080/webapp/store';
 
 Vue.component('RecordList', {
   props: ['records'],
