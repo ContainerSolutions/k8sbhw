@@ -41,10 +41,9 @@ items:
     labels:
       run: webapp
   spec:
-    type: NodePort
     ports:
     - port: 9009
-      nodePort: 32009
+      targetPort: 9009
     selector:
       run: webapp
 
