@@ -67,9 +67,21 @@ func log(message string) {
 }
 
 func main() {
+	var dataStore datastore.Datastore
 	listen := ":9009"
-	dataStore := datastore.NewSliceDataStore()
-	dataStore.Init(0)
+	connectionStr, useSQLDatastore := os.LookupEnv("SQL_DATASTORE_CONNECTION")
+	if useSQLDatastore {
+		dataStore = datastore.NewSQLDatastore()
+		log(fmt.Sprintf("Initializing SQL datastore: %s", connectionStr))
+		err := dataStore.Init("postgres", connectionStr)
+		if err != nil {
+			log(fmt.Sprintf("Cannot initialize SQL datastore: %v", err))
+			os.Exit(1)
+		}
+	} else {
+		dataStore = datastore.NewSliceDataStore()
+		dataStore.Init(0)
+	}
 	http.HandleFunc("/store", getStoreHandler(dataStore))
 	log(fmt.Sprintf("Listening on %s", listen))
 	http.ListenAndServe(listen, nil)

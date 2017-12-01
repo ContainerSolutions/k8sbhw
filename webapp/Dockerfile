@@ -2,6 +2,11 @@ FROM golang:1.9 as BUILDER
 
 WORKDIR /go/src/github.com/riccardomc/k8sbhw/webapp
 
+# Build and test deps
+RUN go get github.com/jinzhu/gorm
+RUN go get github.com/jinzhu/gorm/dialects/postgres
+RUN go get github.com/jinzhu/gorm/dialects/sqlite
+
 COPY webapp.go .
 COPY webapp_test.go .
 COPY datastore ./datastore
