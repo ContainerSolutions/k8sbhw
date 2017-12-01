@@ -11,8 +11,8 @@ func NewSliceDataStore() *SliceDataStore {
 }
 
 //Init initializes the SliceDataStore with initial capacity initialCapacity
-func (d *SliceDataStore) Init(initialCapacity interface{}) error {
-	d.slice = make([]Record, initialCapacity.(int))
+func (d *SliceDataStore) Init(parameters ...interface{}) error {
+	d.slice = make([]Record, parameters[0].(int))
 	return nil
 }
 

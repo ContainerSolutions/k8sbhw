@@ -8,7 +8,7 @@ type Record struct {
 
 //Datastore is a datastore, man
 type Datastore interface {
-	Init(interface{}) error
+	Init(...interface{}) error
 	Get() []Record
 	Add(Record)
 	Rem(Record)
