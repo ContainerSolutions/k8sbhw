@@ -14,7 +14,7 @@ items:
       spec:
         containers:
           - name: webapp
-            image: riccardomc/k8sbhw-webapp:latest
+            image: containersol/k8sbhw-webapp:latest
             ports:
               - containerPort: 9009
 

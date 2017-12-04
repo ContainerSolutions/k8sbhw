@@ -14,7 +14,7 @@ items:
       spec:
         containers:
           - name: webapp
-            image: riccardomc/k8sbhw-webapp:latest
+            image: containersol/k8sbhw-webapp:latest
             env:
             - name: SQL_DATASTORE_CONNECTION
               value: host=cockroachdb-public port=26257 user=root dbname=gorm sslmode=disable
@@ -47,7 +47,7 @@ items:
       spec:
         containers:
           - name: frontend
-            image: riccardomc/k8sbhw-frontend:latest
+            image: containersol/k8sbhw-frontend:latest
             ports:
               - containerPort: 80
 

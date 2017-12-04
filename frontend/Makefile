@@ -1,4 +1,4 @@
-NAME   := riccardomc/k8sbhw-frontend
+NAME   := containersol/k8sbhw-frontend
 TAG    := $(shell git log -1 --pretty=%h)
 IMG    := ${NAME}:${TAG}
 LATEST := ${NAME}:latest
