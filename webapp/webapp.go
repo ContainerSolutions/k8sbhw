@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/riccardomc/k8sbhw/webapp/datastore"
+	"github.com/ContainerSolutions/k8sbhw/webapp/datastore"
 )
 
 func getStoreHandler(dataStore datastore.Datastore) func(http.ResponseWriter, *http.Request) {

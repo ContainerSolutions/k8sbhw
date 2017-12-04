@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/riccardomc/k8sbhw/webapp/datastore"
+	"github.com/ContainerSolutions/k8sbhw/webapp/datastore"
 )
 
 func TestStoreHandler(t *testing.T) {
