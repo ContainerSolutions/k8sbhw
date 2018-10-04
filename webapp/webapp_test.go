@@ -90,7 +90,7 @@ func TestStoreHandler(t *testing.T) {
 
 		expectedSize := 1
 		if actualSize := dataStore.Size(); actualSize != expectedSize {
-			t.Errorf("Unexpected size: '%d' != '%d'", actualBody, expectedBody)
+			t.Errorf("Unexpected size: '%s' != '%s'", actualBody, expectedBody)
 		}
 	})
 }
